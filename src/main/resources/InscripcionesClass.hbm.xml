@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="edu.umg.InscripcionesClass" table="inscripciones" schema="public" catalog="Registros">
+        <id name="idInscripcion">
+            <column name="id_inscripcion" sql-type="integer"/>
+        </id>
+        <property name="idEstudiante">
+            <column name="id_estudiante" sql-type="integer" not-null="true"/>
+        </property>
+        <property name="idCurso">
+            <column name="id_curso" sql-type="integer" not-null="true"/>
+        </property>
+        <property name="fechaInscripcion">
+            <column name="fecha_inscripcion" sql-type="date"/>
+        </property>
+        <many-to-one name="estudiantesByIdEstudiante" class="edu.umg.EstudiantesClass">
+            <column name="id_estudiante" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="cursosByIdCurso" class="edu.umg.CursosClass">
+            <column name="id_curso" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

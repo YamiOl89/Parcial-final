@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="edu.umg.EstudiantesEntity" table="estudiantes" schema="public" catalog="Registros">
+        <id name="idEstudiante">
+            <column name="id_estudiante" sql-type="integer"/>
+        </id>
+        <property name="nombre">
+            <column name="nombre" sql-type="varchar(50)" length="50"/>
+        </property>
+        <property name="apellido">
+            <column name="apellido" sql-type="varchar(50)" length="50"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(100)" length="100"/>
+        </property>
+        <set name="inscripcionesByIdEstudiante" inverse="true">
+            <key>
+                <column name="id_estudiante" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="edu.umg.InscripcionesEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>
